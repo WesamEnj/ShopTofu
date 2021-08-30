@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>login</title>
+    <link rel="stylesheet" href="../../css/styles.css" type="text/css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Raleway:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <form action="../../php/users.php" method="post">
+      <div class="altInput">
+        <input class="input" placeholder=" " />
+        <label class="inputLabel">Test Input</label>
+      </div>
+
+      <label for="email">Login mit Email und Passwort</label>
+      <input type="text" name="mail" id="mail" placeholder="Email" />
+      <span class="focus-bg"></span>
+      <input type="password" name="pwd" id="pwd" placeholder="Passwort" />
+      <button name="login">Login!</button>
+    </form>
+  </body>
+</html>

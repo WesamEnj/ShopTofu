@@ -1,0 +1,453 @@
+//presets
+
+$tinderClr: #ff4c68;
+$blueClr: #4794C8;
+$niceGrnClr: #2ec2b0;
+$font: 'Montserrat',
+sans-serif;
+$greyClr: rgba(252, 252, 252, 0.5);
+
+@mixin centered {
+    margin: 10% auto;
+    padding: 80px 0;
+    text-align: center;
+}
+
+//main
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    font-family: $font;
+    //text-decoration: none ;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+
+body {
+    color: white;
+    background: $tinderClr;
+}
+
+h1,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 3rem;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 100px;
+    line-height: 1.5;
+    font-weight: bolder;
+
+    span {
+        text-decoration: line-through;
+        color: $niceGrnClr;
+
+    }
+}
+
+.container-fluid {
+    padding: 3% 10%;
+    height: 85vh;
+}
+
+.gag {
+    display: none;
+    animation: moveInLeft 1s ease-out;
+
+}
+
+//home
+
+.middle-container {
+    a {
+        color: $niceGrnClr;
+        cursor: pointer;
+        position: relative;
+        white-space: nowrap;
+        text-decoration: none;
+
+        &::before {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: $niceGrnClr;
+            top: 100%;
+            left: 0;
+            pointer-events: none;
+            content: '';
+        }
+
+        &::after {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            top: 100%;
+            left: 0;
+            pointer-events: none;
+        }
+
+    }
+}
+
+
+
+.link {
+    &::before {
+        transform-origin: 100% 50%;
+        transform: scale3d(0, 1, 1);
+        transition: transform 0.3s;
+    }
+
+    &:hover::before {
+        transform-origin: 0% 50%;
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+/* .tofu-container {
+    padding: 30px 70px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+} */
+
+
+.tofuWelt {
+    width: 700px;
+    height: 500px;
+    animation: moveInRight 1s ease-out;
+    transform: rotate(-5deg);
+    transition: all 20s;
+    &:hover {
+        transform: rotate(10000deg);
+    }
+}
+
+
+.user-container {
+    padding: 3% 2%;
+    background: white;
+    color: $tinderClr;
+    text-align: center;
+
+}
+
+.admin-container {
+    padding: 3% 2%;
+
+    form {
+        padding: 0;
+        margin: auto;
+    }
+}
+
+.bottom-container {
+    text-align: center;
+    background: $niceGrnClr;
+    padding: 10px 0;
+}
+
+
+//Nav
+
+/* .nav {
+    background: $niceGrnClr;
+    overflow: hidden;
+
+    a {
+        color: $greyClr;
+        float: right;
+        text-align: center;
+        padding: 16px;
+        font-weight: 300;
+        font-size: 24px;
+        text-decoration: underline;
+
+        &:hover:not(.logo) {
+            background: $greyClr;
+            color: $niceGrnClr;
+        }
+    }
+
+    .logo {
+        float: left;
+        font-weight: 900;
+    }
+} */
+
+.navbar {
+    padding: 0 0 4.5rem;
+}
+
+.navbar-brand {
+    //font-family: "Raleway";
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.nav-item {
+    padding: 0 18px;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    font-weight: lighter;
+
+}
+
+#navbarSupportedContent {
+    justify-content: flex-end;
+}
+
+
+
+//forms
+
+form {
+    @include centered();
+}
+
+label {
+    display: inline-block;
+    padding: 10px 0;
+    /* span {
+        background: $blueClr;
+    } */
+}
+
+input {
+    border: 1px solid rgba(31, 6, 6, 0.411);
+    background: $greyClr;
+    width: 250px;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: $niceGrnClr;
+    font-weight: 300;
+}
+
+button {
+    appearance: none;
+    outline: 0;
+    background: white;
+    border: 0;
+    padding: 10px 15px;
+    margin-top: 10px;
+    color: $niceGrnClr;
+    border-radius: 3px;
+    width: 250px;
+    font-size: 18px;
+    cursor: pointer;
+
+    &:disabled {
+        background: $greyClr;
+        cursor: not-allowed;
+    }
+
+}
+
+
+//table
+
+table {
+    @include centered();
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    min-width: 400px;
+    background: rgb(255, 255, 255);
+    color: $tinderClr;
+
+    a {
+        text-decoration: none;
+        color: $niceGrnClr;
+    }
+
+    thead {
+        background-color: $niceGrnClr;
+        color: white;
+        text-align: center;
+    }
+
+    th,
+    td {
+        padding: 12px 15px;
+    }
+
+    tr {
+        border-bottom: thin solid $niceGrnClr;
+
+    }
+
+}
+
+tr:hover {
+    background: $greyClr;
+    transition: ease .5S;
+}
+
+// Item
+
+.item {
+    @include centered();
+    max-width: 20rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border-radius: 3px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    background: white;
+}
+
+dl {
+    font-size: 90%;
+    margin: 1rem auto 0 auto;
+    letter-spacing: 0.33px;
+    max-width: 15rem;
+}
+
+dt {
+    margin-bottom: 1rem;
+    color: $niceGrnClr;
+    line-height: 1;
+
+    span {
+        font-size: 200%;
+        font-weight: 900;
+    }
+}
+
+.emoji {
+    margin: 0 auto 20px;
+    display: block;
+    font-size: 400%;
+}
+
+dd {
+    font-size: 92.5%;
+    margin-left: 0;
+    color: $niceGrnClr;
+}
+
+// list
+
+.korb {
+    @include centered();
+
+    span {
+        background: $niceGrnClr;
+        padding: 5px 10px;
+    }
+}
+
+/* ul {
+    margin: 25px;
+    list-style-type: none;
+
+    li {
+        margin: 5px;
+    }
+} */
+
+.altInput {
+    position: relative;
+    font-size: 16px;
+}
+
+.input {
+    position: relative;
+    z-index: 3;
+    border: 1px solid rgba(31, 6, 6, 0.411);
+    background: $greyClr;
+    width: 250px;
+    height: 50px;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    text-align: center;
+    font-size: 16px;
+    color: $niceGrnClr;
+    font-weight: 300;
+}
+
+.inputLabel {
+    padding-top: 15px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: .3s;
+    font-weight: 600;
+    align-items: left;
+    z-index: 2;
+    font-size: inherit;
+}
+
+.input:focus+.inputLabel,
+.input:not(:placeholder-shown)+.inputLabel {
+    transform: translate(-70px, -10px);
+    font-size: 12px;
+}
+
+/* .row {
+    text-align: center;
+} */
+
+//Animations 
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px) rotate(200deg);
+    }
+    40% {
+        transform: rotate(10deg);
+    }
+
+    80% {
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(-5deg) translate(0);
+    }
+}
+
+.card {
+    transform: rotate(5deg);
+}

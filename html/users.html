@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>user list</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Raleway:wght@300;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Vorname</th>
+        <th>Email</th>
+        <th>Der Kauf</th>
+      </tr>
+    </thead>
+    <tr>
+      <td>Thunberg</td>
+      <td>Greta</td>
+      <td>g.thunfish@klima.de</td>
+      <td>Korb</td>
+    </tr>
+    <tr>
+      <td>Eilish</td>
+      <td>Billie</td>
+      <td>imabadboy.billie@thepartyisover.com</td>
+      <td>Korb</td>
+    </tr>
+    <tr>
+      <td>Merkel</td>
+      <td>Angel</td>
+      <td>angelomerte@bundesmail.it</td>
+      <td>Korb</td>
+    </tr>
+    <tbody id="data"></tbody>
+  </table>
+
+
+  <script>
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "../php/getUsers.php", true);
+    ajax.send();
+
+    ajax.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        console.log(ajax);
+
+        var html = "";
+        for (var a = 0; a < data.length; a++) {
+          var firstName = data[a].firstname;
+          var lastName = data[a].lastname;
+          var mail = data[a].email;
+
+          html += "<tr>";
+          html += "<td>" + firstName + "</td>";
+          html += "<td>" + lastName + "</td>";
+          html += "<td>" + mail + "</td>";
+          html += "<td>Korb</td>";
+          html += "</tr>";
+        }
+        document.getElementById("data").innerHTML += html;
+      }
+    };
+  </script>
+
+</body>
+
+</html>

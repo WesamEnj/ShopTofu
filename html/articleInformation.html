@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>article information</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Raleway:wght@300;700&display=swap"
+    rel="stylesheet">
+</head>
+</head>
+
+<body>
+
+  <div class="item">
+    <div id="data"></div>
+  </div>
+
+  <div id="data"></div>
+
+  <script>
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "../php/getGoods.php", true);
+    ajax.send();
+
+    ajax.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        console.log(ajax);
+
+        var html = "";
+        for (var a = 0; a < data.length; a++) {
+          var name = data[a].name;
+          var price = data[a].price;
+          var desc = data[a].description;
+
+          html += "<dl>";
+          html += "<dt>";
+          html += "<span class=\"emoji\">" + name + "</span>";
+          html += "<span>" + name + "</span>";
+          html += "</dt>";
+          html += "<dd>" + price + "</dd>";
+          html += "<dd>" + desc + "</dd>";
+          html += "</dl>";
+        }
+        document.getElementById("data").innerHTML += html;
+      }
+    };
+  </script>
+</body>
+
+</html>

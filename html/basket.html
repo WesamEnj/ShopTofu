@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Warenkorb</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Raleway:wght@300;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <table id="data">
+  </table>
+
+
+  <script>
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "../php/getOrder.php", true);
+    ajax.send();
+
+    ajax.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        console.log(ajax);
+
+        var html = "";
+        for (var a = 0; a < data.length; a++) {
+          //var price = data[a].totalPrice;
+          //var anzahl = data[a].anzahl;
+
+          //html += "<table>"
+          html += " <thead>";
+          html += "<tr>";
+          html += "<th>Sorte</th>";
+          html += "<th>Anzahl</th>";
+          html += "<tr>";
+          html += "</thead>";
+          html += "<tr>";
+          html += "<td>" + anzahl +"</td>";
+          html += "<td>" + anzahl + "</td>";
+          html += "</tr>";
+          //html += "</table>"
+
+        }
+        document.getElementById("data").innerHTML += html;
+      }
+    };
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>addArticle</title>
+  <link rel="stylesheet" href="../../css/styles.css" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Raleway:wght@300;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+
+  <form enctype="multipart/form-data" action="../../php/article.php" method="post">
+    <label for="articleName">Füge hier die Infos zu einem neuen Tofu ein:</label>
+    <input type="text" name="articleName" id="articleName" placeholder="Tofu-Name" />
+    <input type="text" name="articlePrice" id="articlePrice" value="" data-type="currency" placeholder="€$1,000" />
+    <input type="text" name="articleDescription" id="articleDescription" placeholder="Beschreibung" />
+    <input type="file" name="articleImage" id="articleImage" placeholder="Bild" />
+    <!-- <input type="submit" value="Submit" name="add" /> -->
+
+    <button type="submit" value="Submit" name="add">Artikel adden!</button>
+
+  </form>
+
+  <script>
+    $("input[data-type='currency']").on({
+      keyup: function () {
+        formatCurrency($(this));
+      },
+      blur: function () {
+        formatCurrency($(this), "blur");
+      },
+    });
+
+    function formatNumber(n) {
+      return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function formatCurrency(input, blur) {
+      var input_val = input.val();
+
+      input_val = formatNumber(input_val);
+      input_val = "€$" + input_val;
+      input.val(input_val);
+    }
+  </script>
+</body>
+
+</html>

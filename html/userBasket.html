@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>user basket</title>
+    <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Raleway:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="korb">
+      <h1><span id="userName">Einkaufskorb von User "Angie"</span></h1>
+      <table id="allArticles">
+        <tr id="article_1">
+          <th class="name"></th>
+          <th class="amount"></th>
+          <th>
+            <button class="buttonInc" onclick="calcAmount(1, true)">+</button>
+            <button class="buttonDec" onclick="calcAmount(1, false)">-</button>
+          </th>
+          <th class="price"></th>
+        </tr>
+        <tr id="article_2">
+          <th class="name"></th>
+          <th class="amount"></th>
+          <th>
+            <button class="buttonInc" onclick="calcAmount(2, true)">+</button>
+            <button class="buttonDec" onclick="calcAmount(2, false)">-</button>
+          </th>
+          <th class="price"></th>
+        </tr>
+        <tr id="article_3">
+          <th class="name"></th>
+          <th class="amount"></th>
+          <th>
+            <button class="buttonInc" onclick="calcAmount(3, true)">+</button>
+            <button class="buttonDec" onclick="calcAmount(3, false)">-</button>
+          </th>
+          <th class="price"></th>
+        </tr>
+      </table>
+
+      <h2><span>Gesamtpreis:</span></h2>
+      <h2><span id="totalPrice">€$39,50</span></h2>
+    </div>
+  </body>
+
+  <script>
+    //Gesamtpreis des Warenkorbes
+    var totalPrice;
+
+    //Benutzername des Warenkorbes
+    var userName = null;
+
+    // Array mit den verschieden Tofusorten und deren Variablen
+    let articles = [
+      {
+        name: "Räucher-Tofu",
+        price: "2.50",
+        amountInBasket: 1,
+      },
+
+      {
+        name: "Natur-Tofu",
+        price: "2.00",
+        amountInBasket: 1,
+      },
+
+      {
+        name: "Curry-Basilikum-Tofu",
+        price: "3.00",
+        amountInBasket: 0,
+      },
+
+      {
+        name: "Kaffee-Tofu",
+        price: "20.00",
+        amountInBasket: 1,
+      },
+    ];
+
+    //Username aus in "allBaskets.html" übergeben und hier ausgelesen sowie dargestellt
+    function getUserName() {
+      var parameters = location.search.substring(1).split("&");
+
+      var temp = parameters[0].split("=");
+      userName = unescape(temp[1]);
+
+      document.getElementById("userName").innerHTML =
+        "Warenkorb von " + userName;
+    }
+
+    getUserName();
+
+    // Funktion, welche alle Daten der Artikel abgleich und darstellt, wird beim laden der Seite aufgerufen sowie nach jedem drücken eines Buttons
+    function updateBasketData() {
+      totalPrice = 0.0;
+      // alle Artikel im Warenkob
+      var allArticles = document.getElementById("allArticles").childNodes;
+
+      for (var z = 1; z <= allArticles.length + 1; z++) {
+        var art = document.getElementById("article_" + z);
+        i = z - 1;
+        var childName,
+          childPrice,
+          childAmount = null;
+
+        var amount = articles[i].amountInBasket;
+
+        if (amount < 1) amount = 1;
+
+        articles[i].amountInBasket = amount;
+
+        for (var v = 0; v < art.childNodes.length; v++) {
+          if (art.childNodes[v].className == "name") {
+            childName = art.childNodes[v];
+          }
+          if (art.childNodes[v].className == "price") {
+            childPrice = art.childNodes[v];
+          }
+          if (art.childNodes[v].className == "amount") {
+            childAmount = art.childNodes[v];
+          }
+        }
+
+        var articlePrice = articles[i].price * amount;
+        childName.innerHTML = articles[i].name;
+        childPrice.innerHTML = "€$ " + articlePrice;
+        childAmount.innerHTML = articles[i].amountInBasket;
+
+        totalPrice += articlePrice;
+      }
+
+      document.getElementById("totalPrice").innerHTML = "€$ " + totalPrice;
+    }
+    function calcAmount(article, value) {
+      if (value == true) {
+        articles[article - 1].amountInBasket++;
+      } else {
+        articles[article - 1].amountInBasket--;
+      }
+      updateBasketData();
+    }
+    updateBasketData();
+  </script>
+</html>

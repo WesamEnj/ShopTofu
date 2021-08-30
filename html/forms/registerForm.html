@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>register</title>
+  <link rel="stylesheet" href="../../css/styles.css" type="text/css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Raleway:wght@300;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <form action="../../php/users.php" method="post">
+    <label for="userName"> <span>Wie heisst du?</span></label>
+    <input type="text" name="name" id="name" placeholder="Nachname" />
+    <input type="text" name="firstName" id="firstName" placeholder="Vorname" />
+    <label for="mail"><span>Nenne uns hier deine Email-Adresse</span></label>
+    <input type="text" name="mail" id="mail" placeholder="Email" />
+    <label for="pwd"><span>Und gib ein Passwort ein</span></label>
+    <input type="password" id="pw1" placeholder="Passwort" onkeyup="checkPass()" />
+    <input type="password" id="pw2" name="pw" placeholder="Passwort Wiederholen" onkeyup="checkPass()" />
+    <div id="err"></div>
+
+    <button name="register" disabled>Registrieren!</button>
+  </form>
+
+  <script>
+    function checkPass() {
+      let password = document.getElementById("pw1");
+      let vpassword = document.getElementById("pw2");
+      let includeNumbers = false;
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+      for (part of password.value) {
+        for (number of numbers) {
+          if (password.value.includes(number)) {
+            includeNumbers = true;
+          }
+        }
+      }
+      //console.log(includeNumbers);
+
+      document.querySelector("button").disabled =
+        password.value.length < 5 ||
+        !includeNumbers ||
+        password.value != vpassword.value;
+    }
+    checkPass();
+
+    pw1.onblur = function () {
+      if (document.querySelector("button").disabled) {
+        pw1.classList.add("invalid");
+        err.innerHTML = "Please enter a correct password.";
+      }
+    };
+
+    pw1.onfocus = function () {
+      if (this.classList.contains("invalid")) {
+        this.classList.remove("invalid");
+        err.innerHTML = "";
+      }
+    };
+
+  </script>
+
+  <noscript>no JavaScript, no party!</noscript>
+</body>
+
+</html>
